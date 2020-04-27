@@ -8,7 +8,7 @@ class CardPage extends StatelessWidget {
         title: Text('Card'),
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(6.0),
         children: <Widget> [
           _cardTipo1()
         ],
@@ -22,7 +22,18 @@ class CardPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.phone_iphone)
+            leading: Icon(Icons.phone_iphone),
+            title: Text("Card Title"),
+            subtitle: Text("This is a card sample"),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FlatButton(onPressed: () {
+
+              },
+              child: Text("Okay"))
+            ],
           ),
         ]
       ),
