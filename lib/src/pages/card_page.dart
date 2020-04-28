@@ -13,6 +13,27 @@ class CardPage extends StatelessWidget {
           _cardTipo1(),
           SizedBox(height: 30.0),
           _cardTipo2(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo2(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo2(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo2(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo2(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo2(),
+          SizedBox(height: 30.0),
         ],
       ),
     );
@@ -21,6 +42,8 @@ class CardPage extends StatelessWidget {
   _cardTipo1() {
 
     return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(15.0) ),
       child: Column(
         children: <Widget>[
           ListTile(
@@ -45,7 +68,8 @@ class CardPage extends StatelessWidget {
 
   _cardTipo2() {
 
-    return Card(
+    final card = Container(
+      //clipBehavior: Clip.antiAlias,
       child: Column(
         children: <Widget> [
 
@@ -63,6 +87,27 @@ class CardPage extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: Text("Ejemplo")),
         ],
+      ),
+    );
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10.0,
+            spreadRadius: 2.0,
+            offset: Offset(2.0, 5.0)
+
+          ),
+
+        ],
+      ),
+      child: ClipRRect(
+        child: card,
+        borderRadius: BorderRadius.circular(15.0),
       ),
     );
   }
