@@ -10,6 +10,8 @@ class _InputPageState extends State<InputPage> {
   String _name = "";
   String _email = "";
   String _date = "";
+  List<String> _powers = ['Volar', 'Rayos X', 'Super fuerza', 'Super aliento'];
+  String _optionSelected ='';
 
   TextEditingController _inputDateController = new TextEditingController();
 
@@ -31,6 +33,8 @@ class _InputPageState extends State<InputPage> {
           _createDateField(context),
           Divider(),
           _createPerson(),
+          Divider(),
+          _createDropDownMenu(),
         ],
       ),
     );
@@ -125,7 +129,7 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  void _selectDate(BuildContext context) async {
+  _selectDate(BuildContext context) async {
 
     DateTime picker = await showDatePicker(
       context: context,
@@ -139,7 +143,29 @@ class _InputPageState extends State<InputPage> {
       setState(() {
         _date = picker.toString();
         _inputDateController.text = _date;
-      });
+        });
+      }
     }
+
+  _createDropDownMenu() {
+
+    return DropdownButton(
+      items: getMenuItems(),
+      onChanged: (dropDownOptions) {
+
+      });
+  }
+
+  List<DropdownMenuItem<String>> getMenuItems() {
+
+    List<DropdownMenuItem<String>> list = new List();
+    _powers.forEach( (power) {
+      list.add( DropdownMenuItem (
+        child: Text(power),
+        value: power
+        ));
+      });
+
+    return list;
   }
 }
