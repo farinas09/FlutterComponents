@@ -54,6 +54,7 @@ class CardPage extends StatelessWidget {
             image: NetworkImage('https://unsplash.com/photos/twukN12EN7c/download'),
             fadeInDuration: Duration(milliseconds: 100),
             height: 250.0,
+            fit: BoxFit.cover,
             ),
           //Image(
             //image: NetworkImage('https://unsplash.com/photos/twukN12EN7c/download'),
