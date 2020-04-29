@@ -25,6 +25,11 @@
             "ruta" : "inputs",
             "icon" : "input",
             "texto": "Inputs Fields"
+        },
+        {
+            "ruta" : "sliders",
+            "icon" : "slider",
+            "texto": "Sliders"
         }
     ]
 }

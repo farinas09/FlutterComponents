@@ -11,7 +11,7 @@ class _InputPageState extends State<InputPage> {
   String _email = "";
   String _date = "";
   List<String> _powers = ['Volar', 'Rayos X', 'Super fuerza', 'Super aliento'];
-  String _optionSelected ='';
+  String _optionSelected ='Volar';
 
   TextEditingController _inputDateController = new TextEditingController();
 
@@ -69,6 +69,7 @@ class _InputPageState extends State<InputPage> {
     return ListTile(
       title: Text('Nombre es: $_name'),
       subtitle: Text('Email: $_email'),
+      trailing: Text(_optionSelected),
     );
   }
 
@@ -149,11 +150,22 @@ class _InputPageState extends State<InputPage> {
 
   _createDropDownMenu() {
 
-    return DropdownButton(
-      items: getMenuItems(),
-      onChanged: (dropDownOptions) {
-
-      });
+    return Row(
+      children: <Widget>[
+        Icon(Icons.select_all),
+        SizedBox(width: 30.0),
+        Expanded(
+          child: DropdownButton(
+          value: _optionSelected,
+          items: getMenuItems(),
+          onChanged: (dropDownOption) {
+            setState(() {
+              _optionSelected = dropDownOption;
+            });
+          }),
+        ),
+      ],
+    );
   }
 
   List<DropdownMenuItem<String>> getMenuItems() {
