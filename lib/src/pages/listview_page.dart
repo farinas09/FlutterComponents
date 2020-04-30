@@ -9,6 +9,7 @@ class ListViewPage extends StatefulWidget {
 
 class _ListViewPageState extends State<ListViewPage> {
 
+  //this var can observe all scroll data, position, end.
   ScrollController _scrollController = new ScrollController();
 
   List<int> _numberList = new List();
@@ -21,7 +22,9 @@ class _ListViewPageState extends State<ListViewPage> {
     super.initState();
     _addImages();
 
+    //listener have all scrollcontroller callbacks
     _scrollController.addListener(() {
+      //verify that scroll is at the max scroll extent
       if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         //_addImages();
         fetchData();
@@ -33,6 +36,7 @@ class _ListViewPageState extends State<ListViewPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+    //to terminate de scroll controller
     _scrollController.dispose();
   }
 
@@ -55,7 +59,11 @@ class _ListViewPageState extends State<ListViewPage> {
 
   Widget _createList() {
 
-    return ListView.builder(
+    //refresh indicator can implements onRefresh to observe pull to refresh action
+    return RefreshIndicator(
+
+      onRefresh: _getPage1,
+      child: ListView.builder(
       itemCount: _numberList.length,
       controller: _scrollController,
       itemBuilder: (BuildContext context, int index) {
@@ -64,9 +72,11 @@ class _ListViewPageState extends State<ListViewPage> {
           placeholder: AssetImage('assets/loading.gif'),
           image: NetworkImage('http://picsum.photos/500/300/?image=$image'));
         },
-      );
+      ),
+    );
   }
 
+  //counter to add numers to number list and then set Widget State
   void _addImages() {
     for (var i = 1; i<=10; i++) {
       _lastItem++;
@@ -78,6 +88,7 @@ class _ListViewPageState extends State<ListViewPage> {
     });
   }
 
+  //fetch data is only a future to set animation by the Timer with "httpresponse" method
   Future<Null> fetchData() async {
     final Duration duration= new Duration(seconds: 1);
 
@@ -88,6 +99,7 @@ class _ListViewPageState extends State<ListViewPage> {
     return new Timer(duration , httpResponse);
   }
 
+  //this method simulate a call to http request, animating the scrollview and loading new images
   void httpResponse() {
     _isLoading = false;
 
@@ -98,6 +110,7 @@ class _ListViewPageState extends State<ListViewPage> {
     _addImages();
   }
 
+  //method to inflate the circular progress bar, if _isloading is false, then return an empty container
   Widget _createLoading() {
     if(_isLoading) {
       return Column(
@@ -116,5 +129,19 @@ class _ListViewPageState extends State<ListViewPage> {
     } else {
       return Container();
     }
+  }
+
+  //pull to refresh method to await 2 seconds with the refresh animation and call _addimages method
+  //to set images
+  Future<Null>_getPage1() async {
+    final duration = Duration(seconds: 2);
+    new Timer( duration, () {
+
+      _numberList.clear();
+      _lastItem++;
+      _addImages();
+
+    });
+    return Future.delayed(duration);
   }
 }

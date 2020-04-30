@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//this is an utils file to get an icon from a string
 final _icons = <String, IconData>{
   'add_alert'     : Icons.add_alert,
   'accessibility' : Icons.accessibility,

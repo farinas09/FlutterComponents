@@ -132,6 +132,7 @@ class _InputPageState extends State<InputPage> {
 
   _selectDate(BuildContext context) async {
 
+    //this method create a default date picker and get the date selected into picker var
     DateTime picker = await showDatePicker(
       context: context,
       initialDate: new DateTime.now(),
@@ -152,7 +153,7 @@ class _InputPageState extends State<InputPage> {
 
     return Row(
       children: <Widget>[
-        Icon(Icons.select_all),
+        Icon(Icons.flash_on),
         SizedBox(width: 30.0),
         Expanded(
           child: DropdownButton(

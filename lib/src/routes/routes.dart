@@ -9,7 +9,7 @@ import 'package:components/src/pages/avatar_page.dart';
 import 'package:components/src/pages/card_page.dart';
 import 'package:components/src/pages/home_page.dart';
 
-
+//class to all application routes
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
         '/'                 : (BuildContext context) => HomePage(),

@@ -82,7 +82,7 @@ class _SlidersPageState extends State<SlidersPage> {
       value: _blockCheck, 
       onChanged: (value){
         setState(() {
-          //to validate if the checkbox is checked
+          //to validate if the switch is checked
           _blockCheck = value;
         });
       });
